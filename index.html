@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Akshan | Magician's Desk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Moving gradient + sparkles -->
+  <div class="background-gradient" aria-hidden="true"></div>
+  <div class="sparkles" aria-hidden="true"></div>
+
+  <main class="desk-wrapper">
+    <header class="hero">
+      <div class="hero-left">
+        <!-- Crystal ball with your main identity -->
+        <div class="crystal-ball" aria-hidden="false">
+          <div class="crystal-inner">
+            <p class="hello">Welcome to the</p>
+            <h1>Magician’s Desk of Akshan</h1>
+            <p class="tagline">
+              ML researcher · Data engineer · Creative storyteller
+            </p>
+          </div>
+          <div class="crystal-base"></div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="desk-button" data-scroll-target="#about">
+            Open Grimoire (About)
+          </button>
+          <button class="desk-button secondary" data-scroll-target="#contact">
+            Cast a Message (Contact)
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="desk-label">Magician’s Desk</div>
+        <h2 class="deck-title">Deck of Experiences</h2>
+        <p class="deck-subtitle">Click a card to reveal the story.</p>
+
+        <!-- Cards are injected here by script.js -->
+        <div id="card-deck" class="card-deck" aria-label="Experience cards"></div>
+      </div>
+    </header>
+
+    <section id="about" class="panel panel-about">
+      <h2>About</h2>
+      <p>
+        I’m an undergraduate at UNC–Chapel Hill double majoring in
+        <strong>Computer Science</strong> and
+        <strong>Computational Physics</strong>, with a minor in
+        <strong>Screenwriting</strong>.
+      </p>
+      <p>
+        I like building things at the intersection of
+        <strong>machine learning, data engineering, and storytelling</strong>.
+        A lot of my recent work has focused on how large language models reason,
+        how to combine many model samples into better decisions, and how to make
+        technical ideas feel intuitive and fun.
+      </p>
+      <p>
+        When I’m not poking at GPUs, you’ll probably find me
+        <strong>teaching, writing comedy, or hanging out with animals</strong>.
+      </p>
+    </section>
+
+    <section id="contact" class="panel panel-contact">
+      <h2>Contact & Links</h2>
+      <p class="contact-intro">
+        These details are <strong>filler</strong> so the layout works —
+        replace them with your real info before sharing the site.
+      </p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Email</h3>
+          <!-- TODO: replace with your real email -->
+          <p>
+            <a href="mailto:your.email@domain.com">
+              your.email@domain.com
+            </a>
+          </p>
+          <p class="contact-note">Swap this for your actual email.</p>
+        </div>
+
+        <div class="contact-card">
+          <h3>Phone</h3>
+          <!-- TODO: replace with your real phone -->
+          <p>(555) 123-4567</p>
+          <p class="contact-note">Put your real number here, or remove.</p>
+        </div>
+
+        <div class="contact-card">
+          <h3>Location</h3>
+          <p>Chapel Hill, NC · Great Falls, VA</p>
+          <p class="contact-note">
+            Adjust this to whatever you want visible publicly.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <h3>Links</h3>
+          <!-- TODO: replace href values with your profiles -->
+          <ul class="contact-links">
+            <li><a href="#" target="_blank" rel="noreferrer">GitHub</a></li>
+            <li><a href="#" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a href="#" target="_blank" rel="noreferrer">Resume (PDF)</a></li>
+          </ul>
+          <p class="contact-note">
+            Update these to point to your real profiles / files.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        © <span id="year"></span> Akshan — All illusions handcrafted.
+      </p>
+    </footer>
+  </main>
+
+  <!-- Modal for card details -->
+  <div id="card-modal" class="card-modal" aria-hidden="true">
+    <div class="card-modal-backdrop"></div>
+    <div
+      class="card-modal-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <button class="modal-close" aria-label="Close details">×</button>
+      <p class="modal-label">Card revealed</p>
+      <h2 id="modal-title"></h2>
+      <p id="modal-subtitle" class="modal-subtitle"></p>
+      <p id="modal-body" class="modal-body"></p>
+      <ul id="modal-highlights" class="modal-list"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
