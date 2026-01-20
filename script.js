@@ -86,7 +86,7 @@ function createCard(experience, index) {
     </div>
   `;
 
-  card.addEventListener("click", () => openModal(experience, index));
+  card.addEventListener("click", () => openModal(experience, card));
   return card;
 }
 
@@ -108,10 +108,14 @@ const modalSubtitle = document.getElementById("modal-subtitle");
 const modalBody = document.getElementById("modal-body");
 const modalList = document.getElementById("modal-highlights");
 
-function openModal(experience) {
+let lastFocusedElement = null;
+
+function openModal(experience, triggerEl) {
   if (!modal || !modalTitle || !modalSubtitle || !modalBody || !modalList) {
     return;
   }
+
+  lastFocusedElement = triggerEl || document.activeElement;
 
   modalTitle.textContent = experience.title;
   modalSubtitle.textContent = experience.subtitle;
@@ -129,15 +133,24 @@ function openModal(experience) {
 
   modal.classList.add("is-visible");
   modal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+
+  const closeBtn = modal.querySelector(".modal-close");
+  closeBtn?.focus();
 }
 
 function closeModal() {
   if (!modal) return;
   modal.classList.remove("is-visible");
   modal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
+
+  if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+    lastFocusedElement.focus();
+  }
 }
 
-// ------- Sparkles (moving graphics) -------
+// ------- Optional sparkles (disabled by default for a cleaner look) -------
 
 function initSparkles() {
   const container = document.querySelector(".sparkles");
@@ -204,7 +217,14 @@ function initModalEvents() {
 // ------- Init on load -------
 
 initDeck();
-initSparkles();
 initScrollButtons();
 setYear();
 initModalEvents();
+
+// To re-enable sparkles: set ENABLE_SPARKLES = true.
+const ENABLE_SPARKLES = false;
+const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+
+if (ENABLE_SPARKLES && !prefersReducedMotion) {
+  initSparkles();
+}
